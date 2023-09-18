@@ -10,8 +10,11 @@ format:
     menu: false
     highlight-style: a11y
     code-line-numbers: false
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "images/02-sourceR.png"/>
 title-slide-attributes:
-  data-background-image: images/00-rgui-menu-dark.png
+  data-background-image: images/00-rgui-menu.png
   data-background-position: top
   data-background-size: 100%
 ---
@@ -21,11 +24,11 @@ title-slide-attributes:
 knitr::opts_chunk$set(echo = TRUE, prompt = TRUE)
 ```
 
-## tl;dr {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## tl;dr {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 Base is great, don't forget about it!
 
-## Bas(e)ically {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Bas(e)ically {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 . . .
 
@@ -63,14 +66,14 @@ installed.packages(priority = "recommended") |> row.names()
 * There are also some non-base packages that have a special status: 'recommended'.
 :::
 
-## Stability {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Stability {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 ::: {.notes}
 * Base packages have changed very little over time.
 * Base code created 10 years ago has a pretty good chance of running today.
 :::
 
-## Dependency {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Dependency {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 ::: {.notes}
 * Using packages in your work can help make your life a lot easier.
@@ -78,7 +81,7 @@ installed.packages(priority = "recommended") |> row.names()
 * An understanding of base can get around some of this.
 :::
 
-## Modern (!) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Modern (!) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 ::: {.notes}
 * Stable and dependable, yes, but that doesn't mean it never advances.
@@ -87,7 +90,7 @@ installed.packages(priority = "recommended") |> row.names()
 * A shorthand anonymous function, or 'lambda', hs been introduced.
 :::
 
-## Pipe down {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Pipe down {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 {magrittr}
 
@@ -118,9 +121,9 @@ chickwts |> nrow()
 lobstr::ast(chickwts |> nrow())
 ```
 
-## Hello, operator?  {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Hello, operator?  {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
-## The infix is in {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## The infix is in {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 ```{r}
 #| label: nested-if
@@ -149,9 +152,9 @@ if ("R" == "A") {
 1 %👯% 2
 ```
 
-## plot {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## plot {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
-## Hidden gems {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Hidden gems {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 ```{r eval=FALSE}
 tools::toTitleCase("care for a SAUSAGE ROLL?")
@@ -162,19 +165,19 @@ switch()
 R_user_dir()
 ```
 
-## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 `locator()`, `repeat`
 
-## {r.oguelike} [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {r.oguelike} [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 `matrix()`, `while`
 
-## {tamRgo} [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {tamRgo} [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 `R_user_dir()`
 
-## {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
 
 tl;dr: base is great, don't forget about it.
 
