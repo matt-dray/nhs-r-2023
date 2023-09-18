@@ -1,0 +1,185 @@
+---
+title: Base slaps!
+subtitle: "[matt-dray.github.io/nhs-r-2023](https://matt-dray.github.io/nhs-r-2023)"
+author: "[Matt Dray](https://www.matt-dray.com), October 2023"
+format:
+  revealjs:
+    theme: [default, nhs-r-2023.scss]
+    hash-type: number
+    margin: 0.2
+    menu: false
+    highlight-style: a11y
+    code-line-numbers: false
+title-slide-attributes:
+  data-background-image: images/00-rgui-menu-dark.png
+  data-background-position: top
+  data-background-size: 100%
+---
+```{r}
+#| label: setup
+#| echo: false
+knitr::opts_chunk$set(echo = TRUE, prompt = TRUE)
+```
+
+## tl;dr {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+Base is great, don't forget about it!
+
+## Bas(e)ically {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+. . .
+
+Installed
+
+```{r}
+#| label: installed
+(installed <- sessionInfo()$base |> sort())
+```
+
+. . .
+
+Extent
+
+```{r}
+#| label: extent
+extent <- installed.packages(priority = "base") |> row.names()
+extent[extent != installed]
+```
+
+. . . 
+
+Expanded universe 
+
+```{r echo=TRUE}
+#| label: expanded
+installed.packages(priority = "recommended") |> row.names()
+```
+
+::: {.notes}
+* What do we mean by 'base' R?
+* It's actually several packages that are automatically installed (including one called 'base').
+* Some are automatically attached when you start R. You can see this if you look at `sessionInfo()`.
+* Some others are considered base, but not attached. These have priority 'base' when you look at the output of `installed.packages()`.
+* There are also some non-base packages that have a special status: 'recommended'.
+:::
+
+## Stability {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+::: {.notes}
+* Base packages have changed very little over time.
+* Base code created 10 years ago has a pretty good chance of running today.
+:::
+
+## Dependency {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+::: {.notes}
+* Using packages in your work can help make your life a lot easier.
+* But you have to consider that dependencies can cause problems; packages and functions come and go.
+* An understanding of base can get around some of this.
+:::
+
+## Modern (!) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+::: {.notes}
+* Stable and dependable, yes, but that doesn't mean it never advances.
+* The pipe, developed in the {magrittr} package by Stefan Milton-Bache and popularised by the tidyverse, has come to base R.
+* It's been followed by a placeholder to pass the LHS to the non-first argument on the RHS.
+* A shorthand anonymous function, or 'lambda', hs been introduced.
+:::
+
+## Pipe down {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+{magrittr}
+
+```{r}
+library(magrittr)
+chickwts %>% nrow()
+```
+
+```{r}
+lobstr::ast(chickwts %>% nrow())
+```
+
+. . .
+
+```{r}
+`%>%`(chickwts, nrow)
+```
+
+. . .
+
+Base
+
+```{r}
+chickwts |> nrow()
+```
+
+```{r}
+lobstr::ast(chickwts |> nrow())
+```
+
+## Hello, operator?  {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+## The infix is in {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+```{r}
+#| label: nested-if
+if ("R" == "A") {
+  TRUE
+} else if ("R" == "B") {
+  TRUE
+} else if ("R" == "C") {
+  TRUE
+} else if ("R" == "R") {
+  TRUE 
+} else {
+  FALSE
+}
+```
+
+```{r}
+#| label: infix-in
+"R" %in% LETTERS
+```
+
+```{r}
+#| label: infix-bespoke
+`%👯%` <- \(x, y) ifelse(x == y, TRUE, FALSE)
+1 %👯% 1
+1 %👯% 2
+```
+
+## plot {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+## Hidden gems {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+```{r eval=FALSE}
+tools::toTitleCase("care for a SAUSAGE ROLL?")
+tools::file_ext("food/sausages.txt")
+lengths()
+Filter()
+switch()
+R_user_dir()
+```
+
+## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+`locator()`, `repeat`
+
+## {r.oguelike} [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+`matrix()`, `while`
+
+## {tamRgo} [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+`R_user_dir()`
+
+## {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+tl;dr: base is great, don't forget about it.
+
+* Stability
+* Dependency
+* Hidden gems
+
+[matt-dray.com](https://www.matt-dray.com)
