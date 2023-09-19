@@ -1,5 +1,5 @@
 ---
-title: Base slaps!
+title: "Base slaps!"
 subtitle: "[matt-dray.github.io/nhs-r-2023](https://matt-dray.github.io/nhs-r-2023)"
 author: "[Matt Dray](https://www.matt-dray.com), October 2023"
 format:
@@ -10,25 +10,29 @@ format:
     menu: false
     highlight-style: a11y
     code-line-numbers: false
-include-in-header:
-  - text: |
-      <link rel = "shortcut icon" href = "images/02-sourceR.png"/>
 title-slide-attributes:
-  data-background-image: images/00-rgui-menu.png
+  data-background-image: images/00-rgui-menu-dark.png
   data-background-position: top
   data-background-size: 100%
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "images/09-quit.png" />
 ---
+
 ```{r}
 #| label: setup
 #| echo: false
-knitr::opts_chunk$set(echo = TRUE, prompt = TRUE)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  prompt = TRUE  # code-block lines begin with '>' and '+' prompt
+)
 ```
 
-## tl;dr {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## tl;dr {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 Base is great, don't forget about it!
 
-## Bas(e)ically {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Bas(e)ically {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 . . .
 
@@ -66,14 +70,14 @@ installed.packages(priority = "recommended") |> row.names()
 * There are also some non-base packages that have a special status: 'recommended'.
 :::
 
-## Stability {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Stability {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 ::: {.notes}
 * Base packages have changed very little over time.
 * Base code created 10 years ago has a pretty good chance of running today.
 :::
 
-## Dependency {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Dependency {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 ::: {.notes}
 * Using packages in your work can help make your life a lot easier.
@@ -81,31 +85,39 @@ installed.packages(priority = "recommended") |> row.names()
 * An understanding of base can get around some of this.
 :::
 
-## Modern (!) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Modern (!) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+* base pipe
+* placeholder
+* lambda
+* string literals
 
 ::: {.notes}
 * Stable and dependable, yes, but that doesn't mean it never advances.
 * The pipe, developed in the {magrittr} package by Stefan Milton-Bache and popularised by the tidyverse, has come to base R.
 * It's been followed by a placeholder to pass the LHS to the non-first argument on the RHS.
-* A shorthand anonymous function, or 'lambda', hs been introduced.
+* A shorthand anonymous function, or 'lambda', has been introduced.
 :::
 
-## Pipe down {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Pipe down {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 {magrittr}
 
 ```{r}
+#| label: magrittr
 library(magrittr)
 chickwts %>% nrow()
 ```
 
 ```{r}
+#| label: magrittr-ast
 lobstr::ast(chickwts %>% nrow())
 ```
 
 . . .
 
 ```{r}
+#| label: magrittr-fn
 `%>%`(chickwts, nrow)
 ```
 
@@ -114,31 +126,18 @@ lobstr::ast(chickwts %>% nrow())
 Base
 
 ```{r}
+#| label: bpipe
 chickwts |> nrow()
 ```
 
 ```{r}
+#| label: bpipe=ast
 lobstr::ast(chickwts |> nrow())
 ```
 
-## Hello, operator?  {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Hello, operator?  {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
-## The infix is in {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
-
-```{r}
-#| label: nested-if
-if ("R" == "A") {
-  TRUE
-} else if ("R" == "B") {
-  TRUE
-} else if ("R" == "C") {
-  TRUE
-} else if ("R" == "R") {
-  TRUE 
-} else {
-  FALSE
-}
-```
+## The infix is in {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 ```{r}
 #| label: infix-in
@@ -152,32 +151,57 @@ if ("R" == "A") {
 1 %👯% 2
 ```
 
-## plot {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## plot {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
-## Hidden gems {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## Hidden gems {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 ```{r eval=FALSE}
+#| label: gems
 tools::toTitleCase("care for a SAUSAGE ROLL?")
 tools::file_ext("food/sausages.txt")
 lengths()
 Filter()
 switch()
-R_user_dir()
+type.convert()
 ```
 
-## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 `locator()`, `repeat`
 
-## {r.oguelike} [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+<TODO: add gif.>
 
-`matrix()`, `while`
+::: {.notes}
+* I want to show you three packages I've written for fun that include interesting base R functions.
+* The first is the {pixeltrix}, a package for creating blocky pixel art, like you might see on retro videogames.
+* It works thanks to `locator()`, a curious base function that lets you click a point on a plot and have its coordinates returned.
+* {pixeltrix} contains a `repeat` loop, that asks the user to click on a plot with `locator()`; updates the plot given the click; and then re-asks the user to click until they break the `repeat` loop.
+:::
 
-## {tamRgo} [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+## {r.oguelike} [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+`readline()`, `matrix()`, `while`
+
+<TODO: add gif.>
+
+::: {.notes}
+* {r.oguelike} mimics an early text-based videogame. 
+* It uses base R functions to procedurally build a tile-based dungeon, which is stored in a `matrix()` and queried with `which()` to identify the locations of characters. The player is `@` and the enemy is `E`. There's an inventory where gold can be stored, along with apples, `a`, that restore a health gauge.
+* The user can move their character (represented by the `@` symbol) by typing into the interactive prompt, which is provided by the base function `readline()`. The enemy tracks the player.
+:::
+
+## {tamRgo} [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 `R_user_dir()`
 
-## {background-image="images/00-rgui-menu.png" background-position="top" background-size="100%"}
+<TODO: add gif.>
+
+::: {.notes}
+* {tamRgo} simulates a cyber pet that lives on your computer and 'exists' between R sessions.
+* How can data about your pet exist between sessions? The package makes use of the base R function `R_user_dir()`, which builds a path to a standardised location on the user's computer where data or cached items can be stored. In {tamRgo}, a 'blueprint' text file stores the pet's status. The blueprint is read at the start of the next R session and values related to time, such as the pet's age and hunger level, are updated given the difference between the current date and date of last interaction.
+:::
+
+## {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 tl;dr: base is great, don't forget about it.
 
