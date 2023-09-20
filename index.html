@@ -393,6 +393,7 @@
 <section data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%" data-notes="<ul>
 <li>I’m Matt Dray, I help people in the public sector use R for reproducibility.</li>
 <li>I’m here to tell you, or remind you, that good ol’ vanilla base R is cool, actually.</li>
+<li>The title of my talk is an off-the-mark pun on ‘slap bass’, the musical technique, but also an off-the-mark reference to how ‘young people these days’ say ‘cool’. The fact I felt I had to explain this to you shows how truly cool I am.</li>
 <li>Bonus points to folks who get the R reference in my slide theme.</li>
 </ul>" class="quarto-title-block center">
   <h1 class="title">Base slaps!</h1>
@@ -408,8 +409,44 @@
 
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
-<h2>tl;dr</h2>
-<p>Base is great, don’t forget about it!</p>
+<h2>Polite notice</h2>
+<ul>
+<li>tl;dr: don’t forget about base R!</li>
+<li>Disclaimer: this is not a flamewar.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/ross.jpg" style="width:80.0%" alt="Ross Ihaka wearing sweet New Balance trainers."></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/robert.png" style="width:80.0%" alt="Robert Gentleman holds a power pose."></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>I have some polite notices and you have to respect them because they’re polite.</li>
+<li>First: the ‘too long didn’t read’ here is a plea not to forget about humble ol’ base R when you’re programming, for several good reasons we’ll get into.</li>
+<li>Also, this is not about {base} vs {tidyverse} vs {data.table} vs {collapse}, etc. All of us have a common enemy and that is Python.</li>
+<li>Oh wait, I said no flamewars. Actually, the enemy is anyone who doesn’t open their heart to base R. And you’re here listening to me, so you’re a winner.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>Bas(e)ically</h2>
@@ -447,10 +484,10 @@
 <aside class="notes">
 <ul>
 <li>What do we mean by ‘base’ R?</li>
-<li>It’s actually several packages that are automatically installed (including one called ‘base’).</li>
+<li>Surprise, it’s actually <em>several</em> packages that are automatically installed with R , including one called ‘base’, confusingly.</li>
 <li>Some are automatically attached when you start R. You can see this if you look at <code>sessionInfo()</code>.</li>
-<li>As an aside: note that you can assign and print if you wrap the whole thing in brackets.</li>
-<li>Some others are considered base, but not attached. These have priority ‘base’ when you look at the output of <code>installed.packages()</code>.</li>
+<li>Aside: note that you can assign and print all at once if you wrap the whole thing in brackets.</li>
+<li>Some other packages are considered base, but not attached. These have priority ‘base’ when you look at the output of <code>installed.packages()</code>.</li>
 <li>There are also some non-base packages that have a special status: ‘recommended’.</li>
 </ul>
 <style type="text/css">
@@ -468,6 +505,11 @@
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>Stability</h2>
+<ol type="1">
+<li>The past</li>
+<li>The present</li>
+<li>The future</li>
+</ol>
 <aside class="notes">
 <ul>
 <li>Base packages have changed very little over time.</li>
@@ -487,11 +529,14 @@
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>Dependency</h2>
-<aside class="notes">
+
+<img data-src="images/xkcd.png" alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'." class="r-stretch"><aside class="notes">
 <ul>
 <li>Using packages in your work can help make your life a lot easier.</li>
 <li>But you have to consider that dependencies can cause problems; packages and functions come and go.</li>
 <li>An understanding of base can get around some of this.</li>
+<li>Your work can be more reliably reproducible in future.</li>
+<li>There’s less work for you to update your code or wrestle with additional tools.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -508,17 +553,102 @@
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>Modern (!)</h2>
 <ul>
-<li>base pipe</li>
-<li>placeholder</li>
-<li>lambda</li>
-<li>string literals</li>
+<li>base pipe, <code>|&gt;</code></li>
+<li>placeholder, <code>_</code></li>
+<li>lambda, <code>\()</code></li>
+<li>string literals, <code>r"{}"</code></li>
 </ul>
 <aside class="notes">
 <ul>
 <li>Stable and dependable, yes, but that doesn’t mean it never advances.</li>
 <li>The pipe, developed in the {magrittr} package by Stefan Milton-Bache and popularised by the tidyverse, has come to base R.</li>
-<li>It’s been followed by a placeholder to pass the LHS to the non-first argument on the RHS.</li>
-<li>A shorthand anonymous function, or ‘lambda’, has been introduced.</li>
+<li>It’s been followed by a placeholder to pass an object from the LHS to the non-first argument on the RHS.</li>
+<li>With functional programming you often write functions on the fly without formally declaring them. These are called ‘anonymous’ or ‘lambda’ functions. You used to have to write out the word <code>function</code>, but now you can use this little backslash. Tidyverse has the tilde, even they recommend the new lambda syntax now.</li>
+<li>String handling can generally be a bit tedious, so R can now recognise strings exactly as they’re provided. You can see this sort of thing in Python.</li>
+<li>I’ll show you a single example that incorporates all these things.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
+<h2>The <em>Modern Base Aesthetic</em></h2>
+<div class="fragment">
+<p>String literals</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> paths <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\t</span><span class="st">rash 2021v1.txt}"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\b</span><span class="st">ilge-2020-"</span>new<span class="st">".txt}"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\r</span><span class="st">ubbish2023_final.txt}"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>Pipes and lambdas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="sc">&gt;</span> r<span class="st">"(20\d{2})"</span> <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="sc">+</span>   <span class="fu">gregexpr</span>(paths) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="sc">+</span>   <span class="fu">regmatches</span>(paths, <span class="at">m =</span> _) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="sc">+</span>   <span class="fu">sapply</span>(\(yr) yr <span class="sc">==</span> <span class="st">"2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<ul>
+<li>For dramatic effect, I’m using the phrase ‘modern base aesthetic’ to describe this ‘new look’ R.</li>
+<li>Task: extract the year from each of these filepaths and return a logical if they match the current year. This is a contrived demo, yes, but I do stuff like this all the time.</li>
+<li>Windows uses a backslash in filepaths. This is bad.</li>
+<li>R reads ‘’ as new line and can’t handle double-quotes in double-quotes, for example, so normally we’d have to escape them with another backslash.</li>
+<li>String literals read the literal string. You do it by putting an ‘r’ before the string and then wrap the string inside the quote marks in curly braces, or parentheses.</li>
+<li>Voila, no need to manually go through the whole string to add extra backslashes.</li>
+<li>Take the regular expression for two zero followed by two digits, i.e.&nbsp;a year, then…</li>
+<li>Pass it to the first argument of <code>gregexpr()</code>, the pattern matching function, then…</li>
+<li>Pass it to the not-first ‘m’ argument of <code>regmatches()</code> using the underscore placeholder, then….</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
+<h2>The <em>Modern Base Aesthetic</em></h2>
+<p>String literals</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> paths <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\t</span><span class="st">rash 2021v1.txt}"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\b</span><span class="st">ilge-2020-"</span>new<span class="st">".txt}"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\r</span><span class="st">ubbish2023_final.txt}"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pipes and lambdas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="sc">&gt;</span> r<span class="st">"(20\d{2})"</span> <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="sc">+</span>   <span class="fu">gregexpr</span>(paths) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="sc">+</span>   <span class="fu">regmatches</span>(paths, <span class="at">m =</span> _) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="sc">+</span>   <span class="fu">sapply</span>(\(yr) yr <span class="sc">==</span> <span class="st">"2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>Pass it as the first argument to <code>sapply()</code>, where we’ll apply a function over our list and simplify it to a vector…</li>
+<li>Where the function is declared on the fly using as an ‘anonymous’ or ‘lambda’ function, declared with this simplified backslash construction rather than having to type out the word <code>function</code>.</li>
+<li>You can see that the style of programming that tidyverse users are confident with has made its way into base R. No more endless nesting of functions or hundreds of intermediate objects cluttering the environment.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -536,14 +666,14 @@
 <h2>Pipe down</h2>
 <p>{magrittr}</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(magrittr)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chickwts <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(magrittr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chickwts <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lobstr<span class="sc">::</span><span class="fu">ast</span>(chickwts <span class="sc">%&gt;%</span> <span class="fu">nrow</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lobstr<span class="sc">::</span><span class="fu">ast</span>(chickwts <span class="sc">%&gt;%</span> <span class="fu">nrow</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>█─`%&gt;%` 
 ├─chickwts 
@@ -552,7 +682,7 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span>(chickwts, nrow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span>(chickwts, nrow)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71</code></pre>
 </div>
@@ -561,13 +691,13 @@
 <div class="fragment">
 <p>Base</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chickwts <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chickwts <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lobstr<span class="sc">::</span><span class="fu">ast</span>(chickwts <span class="sc">|&gt;</span> <span class="fu">nrow</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lobstr<span class="sc">::</span><span class="fu">ast</span>(chickwts <span class="sc">|&gt;</span> <span class="fu">nrow</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>█─nrow 
 └─chickwts </code></pre>
@@ -581,18 +711,18 @@
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>The infix is in</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">"R"</span> <span class="sc">%in%</span> LETTERS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">"R"</span> <span class="sc">%in%</span> LETTERS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">%👯%</span><span class="st">`</span> <span class="ot">&lt;-</span> \(x, y) <span class="fu">ifelse</span>(x <span class="sc">==</span> y, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">%👯%</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">%👯%</span><span class="st">`</span> <span class="ot">&lt;-</span> \(x, y) <span class="fu">ifelse</span>(x <span class="sc">==</span> y, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">%👯%</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">%👯%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">%👯%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -604,12 +734,12 @@
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>Hidden gems</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tools<span class="sc">::</span><span class="fu">toTitleCase</span>(<span class="st">"care for a SAUSAGE ROLL?"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tools<span class="sc">::</span><span class="fu">file_ext</span>(<span class="st">"food/sausages.txt"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lengths</span>()</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">Filter</span>()</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>()</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">type.convert</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tools<span class="sc">::</span><span class="fu">toTitleCase</span>(<span class="st">"care for a SAUSAGE ROLL?"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tools<span class="sc">::</span><span class="fu">file_ext</span>(<span class="st">"food/sausages.txt"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lengths</span>()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">Filter</span>()</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>()</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">type.convert</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
@@ -680,14 +810,21 @@
       }</style></aside>
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
-<h2></h2>
-<p>tl;dr: base is great, don’t forget about it.</p>
+<h2>Wrap-up</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>tl;dr: don’t forget about base R!</p>
 <ul>
-<li>Stability</li>
-<li>Dependency</li>
-<li>Hidden gems</li>
+<li><p>Stability</p></li>
+<li><p>Dependency</p></li>
+<li><p>Hidden gems</p></li>
+<li><p><a href="https://matt-dray.github.io/nhs-r-2023">matt-dray.github.io/nhs-r-2023</a></p></li>
+<li><p><a href="https://www.matt-dray.com">matt-dray.com</a></p></li>
 </ul>
-<p><a href="https://www.matt-dray.com">matt-dray.com</a></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/qr.png" alt="A QR code that links to where these slides exist on the web."></p>
+</div>
+</div>
 <div class="footer footer-default">
 
 </div>

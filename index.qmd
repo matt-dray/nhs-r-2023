@@ -17,6 +17,7 @@ title-slide-attributes:
   data-notes: |
     * I'm Matt Dray, I help people in the public sector use R for reproducibility.
     * I'm here to tell you, or remind you, that good ol' vanilla base R is cool, actually.
+    * The title of my talk is an off-the-mark pun on 'slap bass', the musical technique, but also an off-the-mark reference to how 'young people these days' say 'cool'. The fact I felt I had to explain this to you shows how truly cool I am.
     * Bonus points to folks who get the R reference in my slide theme.
 include-in-header:
   - text: |
@@ -32,9 +33,29 @@ knitr::opts_chunk$set(
 )
 ```
 
-## tl;dr {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Polite notice {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
-Base is great, don't forget about it!
+* tl;dr: don't forget about base R!
+* Disclaimer: this is not a flamewar.
+
+:::: {.columns}
+
+::: {.column width='50%'}
+![](images/ross.jpg){fig-alt="Ross Ihaka wearing sweet New Balance trainers." width="80%" fig-align="center"}
+:::
+
+::: {.column width='50%'}
+![](images/robert.png){fig-alt="Robert Gentleman holds a power pose." width="80%" fig-align="center"}
+:::
+
+::::
+
+:::{.notes}
+* I have some polite notices and you have to respect them because they're polite.
+* First: the 'too long didn't read' here is a plea not to forget about humble ol' base R when you're programming, for several good reasons we'll get into.
+* Also, this is not about {base} vs {tidyverse} vs {data.table} vs {collapse}, etc. All of us have a common enemy and that is Python.
+* Oh wait, I said no flamewars. Actually, the enemy is anyone who doesn't open their heart to base R. And you're here listening to me, so you're a winner.
+:::
 
 ## Bas(e)ically {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
@@ -61,22 +82,27 @@ extent[extent != attached]
 
 Expanded universe 
 
-```{r echo=TRUE}
+```{r}
 #| label: expanded
 installed.packages(priority = "recommended") |> row.names()
 ```
 
 ::: {.notes}
 * What do we mean by 'base' R?
-* It's actually several packages that are automatically installed (including one called 'base').
+* Surprise, it's actually _several_ packages that are automatically installed with R , including one called 'base', confusingly.
 * Some are automatically attached when you start R. You can see this if you look at `sessionInfo()`.
-* As an aside: note that you can assign and print if you wrap the whole thing in brackets.
-* Some others are considered base, but not attached. These have priority 'base' when you look at the output of `installed.packages()`.
+* Aside: note that you can assign and print all at once if you wrap the whole thing in brackets.
+* Some other packages are considered base, but not attached. These have priority 'base' when you look at the output of `installed.packages()`.
 * There are also some non-base packages that have a special status: 'recommended'.
 
 :::
 
 ## Stability {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+1. The past
+2. The present
+2. The future
+
 
 ::: {.notes}
 * Base packages have changed very little over time.
@@ -85,24 +111,102 @@ installed.packages(priority = "recommended") |> row.names()
 
 ## Dependency {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
+![](images/xkcd.png){fig-alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'."}
+
 ::: {.notes}
 * Using packages in your work can help make your life a lot easier.
 * But you have to consider that dependencies can cause problems; packages and functions come and go.
 * An understanding of base can get around some of this.
+* Your work can be more reliably reproducible in future.
+* There's less work for you to update your code or wrestle with additional tools.
 :::
 
 ## Modern (!) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
-* base pipe
-* placeholder
-* lambda
-* string literals
+* base pipe, `|>`
+* placeholder, `_`
+* lambda, `\()`
+* string literals, `r"{}"`
 
 ::: {.notes}
 * Stable and dependable, yes, but that doesn't mean it never advances.
 * The pipe, developed in the {magrittr} package by Stefan Milton-Bache and popularised by the tidyverse, has come to base R.
-* It's been followed by a placeholder to pass the LHS to the non-first argument on the RHS.
-* A shorthand anonymous function, or 'lambda', has been introduced.
+* It's been followed by a placeholder to pass an object from the LHS to the non-first argument on the RHS.
+* With functional programming you often write functions on the fly without formally declaring them. These are called 'anonymous' or 'lambda' functions. You used to have to write out the word `function`, but now you can use this little backslash. Tidyverse has the tilde, even they recommend the new lambda syntax now.
+* String handling can generally be a bit tedious, so R can now recognise strings exactly as they're provided. You can see this sort of thing in Python.
+* I'll show you a single example that incorporates all these things.
+:::
+
+## The _Modern Base Aesthetic_ {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+. . .
+
+String literals
+
+```{r}
+#| label: modern-strings-1
+#| eval: false
+paths <- c(
+  r"{C:\nonsense\trash 2021v1.txt}",
+  r"{C:\nonsense\bilge-2020-"new".txt}",
+  r"{C:\nonsense\rubbish2023_final.txt}"
+)
+```
+
+. . .
+
+Pipes and lambdas
+
+```{r}
+#| label: modern-pipe-lambda-1
+#| eval: false
+#| code-line-numbers: "1|2|3"
+r"(20\d{2})" |> 
+  gregexpr(paths) |> 
+  regmatches(paths, m = _) |> 
+  sapply(\(yr) yr == "2023")
+```
+
+::: {.notes}
+* For dramatic effect, I'm using the phrase 'modern base aesthetic' to describe this 'new look' R.
+* Task: extract the year from each of these filepaths and return a logical if they match the current year. This is a contrived demo, yes, but I do stuff like this all the time.
+* Windows uses a backslash in filepaths. This is bad. 
+* R reads '\n' as new line and can't handle double-quotes in double-quotes, for example, so normally we'd have to escape them with another backslash.
+* String literals read the literal string. You do it by putting an 'r' before the string and then wrap the string inside the quote marks in curly braces, or parentheses.
+* Voila, no need to manually go through the whole string to add extra backslashes.
+* Take the regular expression for two zero followed by two digits, i.e. a year, then...
+* Pass it to the first argument of `gregexpr()`, the pattern matching function, then...
+* Pass it to the not-first 'm' argument of `regmatches()` using the underscore placeholder, then....
+:::
+
+## The _Modern Base Aesthetic_ {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+
+String literals
+
+```{r}
+#| label: modern-strings-2
+paths <- c(
+  r"{C:\nonsense\trash 2021v1.txt}",
+  r"{C:\nonsense\bilge-2020-"new".txt}",
+  r"{C:\nonsense\rubbish2023_final.txt}"
+)
+```
+
+Pipes and lambdas
+
+```{r}
+#| label: modern-pipe-lambda-2
+#| code-line-numbers: "4"
+r"(20\d{2})" |> 
+  gregexpr(paths) |> 
+  regmatches(paths, m = _) |> 
+  sapply(\(yr) yr == "2023")
+```
+
+::: {.notes}
+* Pass it as the first argument to `sapply()`, where we'll apply a function over our list and simplify it to a vector...
+* Where the function is declared on the fly using as an 'anonymous' or 'lambda' function, declared with this simplified backslash construction rather than having to type out the word `function`.
+* You can see that the style of programming that tidyverse users are confident with has made its way into base R. No more endless nesting of functions or hundreds of intermediate objects cluttering the environment.
 :::
 
 ## Pipe down {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
@@ -161,8 +265,9 @@ lobstr::ast(chickwts |> nrow())
 
 ## Hidden gems {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
-```{r eval=FALSE}
+```{r}
 #| label: gems
+#| eval: false
 tools::toTitleCase("care for a SAUSAGE ROLL?")
 tools::file_ext("food/sausages.txt")
 lengths()
@@ -208,12 +313,24 @@ type.convert()
 * How can data about your pet exist between sessions? The package makes use of the base R function `R_user_dir()`, which builds a path to a standardised location on the user's computer where data or cached items can be stored. In {tamRgo}, a 'blueprint' text file stores the pet's status. The blueprint is read at the start of the next R session and values related to time, such as the pet's age and hunger level, are updated given the difference between the current date and date of last interaction.
 :::
 
-## {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## Wrap-up {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+:::: {.columns}
 
-tl;dr: base is great, don't forget about it.
+::: {.column width='60%'}
+tl;dr: don't forget about base R!
 
 * Stability
 * Dependency
 * Hidden gems
 
-[matt-dray.com](https://www.matt-dray.com)
+* [matt-dray.github.io/nhs-r-2023](https://matt-dray.github.io/nhs-r-2023)
+* [matt-dray.com](https://www.matt-dray.com)
+:::
+
+::: {.column width='40%'}
+![](images/qr.png){fig-alt="A QR code that links to where these slides exist on the web."}
+:::
+
+::::
+
+
