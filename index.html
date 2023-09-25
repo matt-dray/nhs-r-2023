@@ -393,7 +393,7 @@
 <section data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%" data-notes="<ul>
 <li>I’m Matt Dray, I help people in the public sector use R for reproducibility.</li>
 <li>I’m here to tell you, or remind you, that good ol’ vanilla base R is cool, actually.</li>
-<li>The title of my talk is an off-the-mark pun on ‘slap bass’, the musical technique, but also an off-the-mark reference to how ‘young people these days’ say ‘cool’. The fact I felt I had to explain this to you shows how truly cool I am.</li>
+<li>The title of my talk is an off-the-mark pun on ‘slap bass’, the musical technique, but also an off-the-mark reference to how I”m told that ‘young people these days’ say ‘slaps’ to mean ‘cool’. The fact I felt I had to explain this to you shows how truly hard I slap.</li>
 <li>Bonus points to folks who get the R reference in my slide theme.</li>
 </ul>" class="quarto-title-block center">
   <h1 class="title">Base slaps!</h1>
@@ -418,13 +418,13 @@
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/ross.jpg" style="width:80.0%" alt="Ross Ihaka wearing sweet New Balance trainers."></p>
+<p><img data-src="images/ross.jpg" style="width:75.0%" alt="Ross Ihaka wearing sweet New Balance trainers."></p>
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/robert.png" style="width:80.0%" alt="Robert Gentleman holds a power pose."></p>
+<p><img data-src="images/robert.png" style="width:75.0%" alt="Robert Gentleman holds a power pose."></p>
 </figure>
 </div>
 </div>
@@ -505,11 +505,13 @@
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>Stability</h2>
+<div>
 <ol type="1">
-<li>The past</li>
-<li>The present</li>
-<li>The future</li>
+<li class="fragment">The past</li>
+<li class="fragment">The present</li>
+<li class="fragment">The future</li>
 </ol>
+</div>
 <aside class="notes">
 <ul>
 <li>Base packages have changed very little over time.</li>
@@ -706,47 +708,10 @@
 </div>
 </section>
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
-<h2>Hello, operator?</h2>
-</section>
-<section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
-<h2>The infix is in</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">"R"</span> <span class="sc">%in%</span> LETTERS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">%👯%</span><span class="st">`</span> <span class="ot">&lt;-</span> \(x, y) <span class="fu">ifelse</span>(x <span class="sc">==</span> y, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">%👯%</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">%👯%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
-<h2>plot</h2>
-</section>
-<section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
-<h2>Hidden gems</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tools<span class="sc">::</span><span class="fu">toTitleCase</span>(<span class="st">"care for a SAUSAGE ROLL?"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tools<span class="sc">::</span><span class="fu">file_ext</span>(<span class="st">"food/sausages.txt"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lengths</span>()</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">Filter</span>()</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>()</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">type.convert</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>{pixeltrix} <a href="https://github.com/matt-dray/pixeltrix"><svg aria-hidden="true" role="img" viewbox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a> <a href="https://www.rostrum.blog/index.html#category=pixeltrix"><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M528.3 46.5H388.5c-48.1 0-89.9 33.3-100.4 80.3-10.6-47-52.3-80.3-100.4-80.3H48c-26.5 0-48 21.5-48 48v245.8c0 26.5 21.5 48 48 48h89.7c102.2 0 132.7 24.4 147.3 75 .7 2.8 5.2 2.8 6 0 14.7-50.6 45.2-75 147.3-75H528c26.5 0 48-21.5 48-48V94.6c0-26.4-21.3-47.9-47.7-48.1zM242 311.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5V289c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V251zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm259.3 121.7c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5V228c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.8c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V190z"></path></svg></a></h2>
 <p><code>locator()</code>, <code>repeat</code></p>
 
-<img data-src="images/pixeltrix.gif" style="width:100.0%" alt="Gif demonstration of the 'pixeltrix' package in RStudio. The click_pixels function is run. The plot window displays a grid of squares. The user clicks in some squares and they change to light grey. A second click turns them dark grey. The result is a blocky character made of pixels. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." class="r-stretch quarto-figure-left"><aside class="notes">
+<img data-src="images/pixeltrix.png" style="width:100.0%" alt="Gif demonstration of the 'pixeltrix' package in RStudio. The click_pixels function is run. The plot window displays a grid of squares. The user clicks in some squares and they change to light grey. A second click turns them dark grey. The result is a blocky character made of pixels. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." class="r-stretch quarto-figure-left"><aside class="notes">
 <ul>
 <li>I want to show you three packages I’ve written for fun that include interesting base R functions.</li>
 <li>The first is the {pixeltrix}, a package for creating blocky pixel art, like you might see on retro videogames.</li>
@@ -790,8 +755,22 @@
 <section class="slide level2" data-background-image="images/00-rgui-menu-dark.png" data-background-position="top" data-background-size="100%">
 <h2>{tamRgo} <a href="https://github.com/matt-dray/tamRgo"><svg aria-hidden="true" role="img" viewbox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a> <a href="https://www.rostrum.blog/posts/2022-11-13-tamrgo/"><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M528.3 46.5H388.5c-48.1 0-89.9 33.3-100.4 80.3-10.6-47-52.3-80.3-100.4-80.3H48c-26.5 0-48 21.5-48 48v245.8c0 26.5 21.5 48 48 48h89.7c102.2 0 132.7 24.4 147.3 75 .7 2.8 5.2 2.8 6 0 14.7-50.6 45.2-75 147.3-75H528c26.5 0 48-21.5 48-48V94.6c0-26.4-21.3-47.9-47.7-48.1zM242 311.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5V289c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V251zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm259.3 121.7c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5V228c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.8c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V190z"></path></svg></a></h2>
 <p><code>R_user_dir()</code></p>
-
-<img data-src="images/tamRgo.gif" style="width:100.0%" alt="Gif demonstration of the 'tamRgo' package in the RStudio console. The 'tamRgo package is loaded, which tells the user that their pet, 'Kevin', is pleased to see them and also provides some prompts for interacting with the pet. The user uses the 'get_stats' function for a printout showing the pet's status, like its age and how hungry it is. The user uses the 'see_pet' function' and a blocky character is printed to the console, along with a blocky poop. The user runs the 'clean' function and reinspects the pet and stats to see that the 'dirty' status is now set to zero." class="r-stretch quarto-figure-left"><aside class="notes">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/tamRgo-1.png" style="width:100.0%" alt="Demo of the 'tamRgo' package in the RStudio console. The 'tamRgo' package is loaded, which tells the user that their pet, 'Kevin', is pleased to see them and also provides some prompts for interacting with the pet. The user uses the 'get_stats' function for a printout showing the pet's status, like its age and how hungry it is."></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/tamRgo-2.png" style="width:100.0%" alt="Demo of the 'tamRgo' package in the RStudio console. The user uses the 'see_pet' function' and a blocky character is printed to the console, along with a blocky poop. The user runs the 'clean' function and reinspects the pet and a message says that 'dirty' status value is now set to zero."></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
 <ul>
 <li>{tamRgo} simulates a cyber pet that lives on your computer and ‘exists’ between R sessions.</li>
 <li>Like a Tamagotchi in R, if you’re the right age to know what a Tamagotchi is.</li>

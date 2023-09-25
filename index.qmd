@@ -16,8 +16,9 @@ title-slide-attributes:
   data-background-size: 100%
   data-notes: |
     * I'm Matt Dray, I help people in the public sector use R for reproducibility.
-    * I'm here to tell you, or remind you, that good ol' vanilla base R is cool, actually.
-    * The title of my talk is an off-the-mark pun on 'slap bass', the musical technique, but also an off-the-mark reference to how 'young people these days' say 'cool'. The fact I felt I had to explain this to you shows how truly cool I am.
+    * I work at the UK Health Security Agency, but this talk is pretty generic.
+    * I'm here to cheerlead for functionlity built into good ol' vanilla base R.
+    * The title of my talk is an off-the-mark pun on 'slap bass', the musical technique, but also an off-the-mark reference to how I'm told that 'young people these days' say 'it slaps' to mean it's 'cool'. The fact I felt I had to explain this to you shows how truly hard I slap.
     * Bonus points to folks who get the R reference in my slide theme.
 include-in-header:
   - text: |
@@ -41,11 +42,11 @@ knitr::opts_chunk$set(
 :::: {.columns}
 
 ::: {.column width='50%'}
-![](images/ross.jpg){fig-alt="Ross Ihaka wearing sweet New Balance trainers." width="80%" fig-align="center"}
+![](images/ross.jpg){fig-alt="Ross Ihaka wearing sweet New Balance trainers." width="75%" fig-align="center"}
 :::
 
 ::: {.column width='50%'}
-![](images/robert.png){fig-alt="Robert Gentleman holds a power pose." width="80%" fig-align="center"}
+![](images/robert.png){fig-alt="Robert Gentleman holds a power pose." width="75%" fig-align="center"}
 :::
 
 ::::
@@ -99,12 +100,15 @@ installed.packages(priority = "recommended") |> row.names()
 
 ## Stability {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
+
+::: {.incremental}
 1. The past
 2. The present
 2. The future
-
+:::
 
 ::: {.notes}
+* R originally appeared in 1993 and hit version 1.0 in 2000.
 * Base packages have changed very little over time.
 * Base code created 10 years ago has a pretty good chance of running today.
 :::
@@ -245,42 +249,11 @@ chickwts |> nrow()
 lobstr::ast(chickwts |> nrow())
 ```
 
-## Hello, operator?  {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-
-## The infix is in {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-
-```{r}
-#| label: infix-in
-"R" %in% LETTERS
-```
-
-```{r}
-#| label: infix-bespoke
-`%👯%` <- \(x, y) ifelse(x == y, TRUE, FALSE)
-1 %👯% 1
-1 %👯% 2
-```
-
-## plot {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-
-## Hidden gems {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-
-```{r}
-#| label: gems
-#| eval: false
-tools::toTitleCase("care for a SAUSAGE ROLL?")
-tools::file_ext("food/sausages.txt")
-lengths()
-Filter()
-switch()
-type.convert()
-```
-
 ## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/index.html#category=pixeltrix) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
 
 `locator()`, `repeat`
 
-![](images/pixeltrix.gif){fig-alt="Gif demonstration of the 'pixeltrix' package in RStudio. The click_pixels function is run. The plot window displays a grid of squares. The user clicks in some squares and they change to light grey. A second click turns them dark grey. The result is a blocky character made of pixels. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." width="100%" fig-align="left"}
+![](images/pixeltrix.png){fig-alt="Gif demonstration of the 'pixeltrix' package in RStudio. The click_pixels function is run. The plot window displays a grid of squares. The user clicks in some squares and they change to light grey. A second click turns them dark grey. The result is a blocky character made of pixels. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." width="100%" fig-align="left"}
 
 ::: {.notes}
 * I want to show you three packages I've written for fun that include interesting base R functions.
@@ -305,7 +278,17 @@ type.convert()
 
 `R_user_dir()`
 
-![](images/tamRgo.gif){fig-alt="Gif demonstration of the 'tamRgo' package in the RStudio console. The 'tamRgo\ package is loaded, which tells the user that their pet, 'Kevin', is pleased to see them and also provides some prompts for interacting with the pet. The user uses the 'get_stats' function for a printout showing the pet's status, like its age and how hungry it is. The user uses the 'see_pet' function' and a blocky character is printed to the console, along with a blocky poop. The user runs the 'clean' function and reinspects the pet and stats to see that the 'dirty' status is now set to zero." width="100%" fig-align="left"}
+:::: {.columns}
+
+::: {.column width='50%'}
+![](images/tamRgo-1.png){fig-alt="Demo of the 'tamRgo' package in the RStudio console. The 'tamRgo' package is loaded, which tells the user that their pet, 'Kevin', is pleased to see them and also provides some prompts for interacting with the pet. The user uses the 'get_stats' function for a printout showing the pet's status, like its age and how hungry it is." width="100%" fig-align="left"}
+:::
+
+::: {.column width='50%'}
+![](images/tamRgo-2.png){fig-alt="Demo of the 'tamRgo' package in the RStudio console. The user uses the 'see_pet' function' and a blocky character is printed to the console, along with a blocky poop. The user runs the 'clean' function and reinspects the pet and a message says that 'dirty' status value is now set to zero." width="100%" fig-align="left"}
+:::
+
+::::
 
 ::: {.notes}
 * {tamRgo} simulates a cyber pet that lives on your computer and 'exists' between R sessions.
