@@ -253,7 +253,7 @@ lobstr::ast(chickwts |> nrow())
 
 `locator()`, `repeat`
 
-![](images/pixeltrix.png){fig-alt="Gif demonstration of the 'pixeltrix' package in RStudio. The click_pixels function is run. The plot window displays a grid of squares. The user clicks in some squares and they change to light grey. A second click turns them dark grey. The result is a blocky character made of pixels. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." width="100%" fig-align="left"}
+![](images/pixeltrix.png){fig-alt="Demo of the 'pixeltrix' package in RStudio. A function has been run and the plot window displays a grid of squares. They're coloured to look like Mario from Super Mario. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." width="100%" fig-align="left"}
 
 ::: {.notes}
 * I want to show you three packages I've written for fun that include interesting base R functions.
@@ -266,7 +266,7 @@ lobstr::ast(chickwts |> nrow())
 
 `readline()`, `matrix()`, `while`
 
-![](images/r.oguelike.gif){fig-alt="Gif demonstration of the 'r.oguelike' package in the RStudio console. The 'start_game' function is run. The console clears and a text-based tile-based dungeon map appeears. Below is an inventory that includes health, money and food counters. Below is a prompt asking the user to type the W, A, S or D key and hit enter to move. The user does this and their player character moves around the dungeon space, collects an apple, battles an enemy and then eats the apple to restore health." width="100%" fig-align="left"}
+![](images/r.oguelike-demo.gif){fig-alt="Gif demonstration of the 'r.oguelike' package in the RStudio console. The 'start_game' function is run. The console clears and a text-based tile-based dungeon map appeears. Below is an inventory that includes health, money and food counters. Below is a prompt asking the user to type the W, A, S or D key and hit enter to move. The user does this and their player character moves around the dungeon space, collects an apple, battles an enemy and then eats the apple to restore health." width="100%" fig-align="left"}
 
 ::: {.notes}
 * {r.oguelike} mimics an early text-based videogame. 
