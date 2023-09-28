@@ -17,9 +17,9 @@ title-slide-attributes:
   data-notes: |
     * I'm Matt Dray, I help people in the public sector use R for reproducibility.
     * I work at the UK Health Security Agency, but this talk is pretty generic.
-    * I'm here to cheerlead for functionlity built into good ol' vanilla base R.
+    * I'm here to cheerlead for the functionality built into good ol' vanilla base R.
     * The title of my talk is an off-the-mark pun on 'slap bass', the musical technique, but also an off-the-mark reference to how I'm told that 'young people these days' say 'it slaps' to mean it's 'cool'. The fact I felt I had to explain this to you shows how truly hard I slap.
-    * Bonus points to folks who get the R reference in my slide theme.
+    * Bonus points to folks who recgonise the reference to the R graphical user interface in the design of these slides.
 include-in-header:
   - text: |
       <link rel="shortcut icon" href="images/quit.png" />
@@ -40,10 +40,9 @@ knitr::opts_chunk$set(
 Polite notice: this is not a flamewar 🔥
 </center>
 
-:::{.notes}
+::: {.notes}
 * I have some polite notices and you have to respect them because they're polite.
-* First: the 'too long didn't read' here is a plea not to forget about humble ol' base R when you're programming, for several good reasons we'll get into.
-* Also, this is not about {base} vs {tidyverse} vs {data.table} vs {collapse}, etc. All of us have a common enemy and that is Python.
+* This is not about one tool being better than another; it's not {base} vs {tidyverse} vs {data.table} vs {collapse}, etc. All of us have a common enemy and that is Python.
 * Oh wait, I said no flamewars. Actually, the enemy is anyone who doesn't open their heart to base R. And you're here listening to me, so you're a winner.
 :::
 
@@ -52,6 +51,13 @@ Polite notice: this is not a flamewar 🔥
 <center>
 What is 'base R'? 🤔
 </center>
+
+::: {.notes}
+* It's entirely possible that you already have no idea what I'm talking about.
+* Actually, what do we mean by 'base' R?
+* Well, it's as it sounds: it's the functionality that R is equipped with in the 'base' installation, when we first install it.
+* It's the functions that R has before we install any packages.
+:::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
@@ -69,12 +75,12 @@ extent[extent != attached]
 ```
 
 ::: {.notes}
-* What do we mean by 'base' R?
+* Buuuut it's marginally more complicated than that.
 * Surprise, it's actually _several_ packages that are automatically installed with R , including one called 'base', confusingly.
 * Some are automatically attached when you start R. You can see this if you look at `sessionInfo()`.
+* You can also use the function 'search()' to confirm that these packages are already attached when you start a new R session.
 * Aside: note that you can assign and print all at once if you wrap the whole thing in brackets.
 * Some other packages are considered base, but not attached. These have priority 'base' when you look at the output of `installed.packages()`.
-* There are also some non-base packages that have a special status: 'recommended'.
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -106,6 +112,17 @@ x <- head(mtcars)
 sapply(z, mean)
 ```
 
+::: {.notes}
+* Here's a quick reminder of what some pure, unadulterated R looks like in a contrived example. This isn't a training session, so I'll keep this brief.
+* Let's take the `head()`, the top six rows, of the built-in `mtcars` dataset as an example data.frame, and assign it to `x`.
+* Then we can use square-bracket notation to ask for certain rows and columns to extract into a new object, called `y`.
+* So, from `x`, we want wherever the `wt` (weight) column of the `x` object has a value greater than 3.
+* After the comma, we're asking for the columns with the names `hp` (horsepower) and `cyl` (cylinder count), which we provide in the vector compsoed with the `c()` (combine/concatenate) function.
+* For a new column, we can assign the `round()`ed value of horsepower over (`/`) cylinder count to a freshly `hp_per_cyl` column, declared on the left of the assignment arrow.
+* We can `order()` the data.frame by values of `hp_per_cyl`, which will be descending due to the minus (`-`) symbol, and call this object `z`.
+* Finally, some functional programming: to each column of the data.frame `z`, let's apply the  function `mean` with `sapply()`, which simplifies to a vector of results in this case.
+* You'll likely have recognised certain functions in there at very least.
+:::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
@@ -113,14 +130,25 @@ sapply(z, mean)
 2. Dependency
 3. Modernity
 
+::: {.notes}
+* Regardless of what you think of that style of coding, I want to make three points (and maybe a bonus one) to just remind you why base R is useful and may have changed since you last used it in anger.
+* First, its stability over time and into the future.
+* Second, that a lot of functionality exists in base R that could help to limit package dependencies.
+* Third, that 'stability' does not mean 'unchanging' and 'unresponsive' to the needs and wants of the R community.
+* My conceit here is that R is great, even when unadorned by packages. This is a message for new users, people who are more used to coding with interfaces afforded by packages, and even folks who aren't actually R users (yet).
+:::
+
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 ![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}
 
 ::: {.notes}
-* R originally appeared in 1993 and hit version 1.0 in 2000.
-* Base packages have changed very little over time.
-* Base code created 10 years ago has a pretty good chance of running today.
+* I want to talk a little about how base R is a great choice for work that needs to be stable and reproducible over time. 
+* The core language retains so much of what was in the original specifications in 1993 and in the version 1.0 release in 2000. 
+* Boradly, base code created 10 years ago has a pretty good chance of running today and 10 years from now.
+* There's no version-2-to-version-3 rift as in Python for example.
+* If you want a trip down memory lane, I downloaded R version 1.0 and found in there a little file called 'Y2K' that explained that 'we expect R to be Y2K compliant', lol. There was a time where we couldn't be sure if code would survive into the 21st Century; yet here were are nearly a quarter of a century later.
+* You might be wondering why I've chosen this image. Here's my terrible metaphor: base R is not a dinosaur. It's more like a horseshoe crab. It's not extinct. It's survived all this time. It's also pretty unassuming and kind of weird. You could introduce a horseshoe crab today to one from a million years ago and they'd be friends I reckon.
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -128,29 +156,40 @@ sapply(z, mean)
 ![](images/xkcd.png){fig-alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'." fig-align="center"}
 
 ::: {.notes}
-* Using packages in your work can help make your life a lot easier.
-* But you have to consider that dependencies can cause problems; packages and functions come and go.
-* An understanding of base can get around some of this.
-* Your work can be more reliably reproducible in future.
-* There's less work for you to update your code or wrestle with additional tools.
+* One of R's greatest strengths is its extensibility. The CRAN repository has about 20,000 packages at the time of speaking. A lot of smart people have written a lot of excellent code so that you don't have to. 
+* Whether or not you take on a dependency is up to you and the type of project you're working on and it.
+* But, of course, you should always be aware that packages come and go, functions deprecate, thermodynamics laws apply.
+* For some precious projects you may want to think about where you can minimise dependencies and include more base R code so that you can increase the likelihood of successfully re-executing it into the future and on other computers by other people.
+* Base R can help you with this.
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 ![](images/logo.gif){fig-alt="The old R logo morphs into the new R logo. The old has bevels, highlights and shadows. The new one is simpler with peak 'flat' design." fig-align="center" width="60%"}
 
+::: {.notes}
+* I don't think that a lack of change is stubbornness or sticking one's head in the sand. I would call it measured and considerate. 
+* I want to talk about how, despite the stability, the language continues to adapt sensibly, listen to its users and embrace modern ways of using R. 
+* And actually base R has changed in a number of ways, including the use of a base pipe, simplified anonymous function structure and string literals. These are all things that the community of R users has asked for.
+* And perhaps more famously, the conversion of the default `stringsAsFactors = TRUE` to `FALSE`, perhaps reflecting a change in R from a lanaguage of statistics (where character values as factors makes a lot of sense) to a more general-purpose language.
+* Of course, there are still opportunities to improve base R. Lots of stuff can come out of the woodwork after 30 years, or as tastes change. Henrik Bengtsson has a GitHub repo to which people can add issues. Each one lists a specific gripe that someone has had with the functioning of the language. For example, out very own Tim Taylor at UKHSA posted about the behaviour of indexing a dataframe to return a single column. By default, a single column is returned as a vector; the user needs to add the argument `drop = FALSE` to retain the coulmnar structure. Perhaps that behaviour will updated in the future?
+:::
+
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 <center>
 The _Modern Base Aesthetic_ 🧐
+
+`|>`, `_`, `\()`, `r"{}"`
 </center>
 
 ::: {.notes}
-* Stable and dependable, yes, but that doesn't mean it never advances.
-* The pipe, developed in the {magrittr} package by Stefan Milton-Bache and popularised by the tidyverse, has come to base R.
-* It's been followed by a placeholder to pass an object from the LHS to the non-first argument on the RHS.
+* I want to focus a little on the changes made to R from version 4. Maybe you haven't seen some of these.
+* For dramatic effect, I'm using the phrase 'modern base aesthetic' to describe this 'new look' R.
+* The 'pipe' (`%>%`)—developed in the {magrittr} package by Stefan Milton-Bache and popularised by the tidyverse—has an implementation now in base R (`|>`).
+* It's been followed by a placeholder, the underscore (`_`), to pass an object from the left-hand side of the pipe to the non-first argument on the right-hand side.
 * With functional programming you often write functions on the fly without formally declaring them. These are called 'anonymous' or 'lambda' functions. You used to have to write out the word `function`, but now you can use this little backslash. Tidyverse has the tilde, even they recommend the new lambda syntax now.
-* String handling can generally be a bit tedious, so R can now recognise strings exactly as they're provided. You can see this sort of thing in Python.
+* String handling can generally be a bit tedious, so R can now recognise strings exactly as they're provided. This is provided through the use of the letter `r` ahead of the string, which you can translate to 'raw'.
 * I'll show you a single example that incorporates all these things.
 :::
 
@@ -190,7 +229,6 @@ cat(" ")
 ```
 
 ::: {.notes}
-* For dramatic effect, I'm using the phrase 'modern base aesthetic' to describe this 'new look' R.
 * Task: extract the year from each of these filepaths and return a logical if they match the current year. This is a contrived demo, yes, but I do stuff like this all the time.
 * Windows uses a backslash in filepaths. This is bad. 
 * R reads '\n' as new line and can't handle double-quotes in double-quotes, for example, so normally we'd have to escape them with another backslash.
@@ -296,6 +334,13 @@ Stability, Dependency, Modernity, Oddity!
 Matt Dray [`r fontawesome::fa("globe")`](https://www.matt-dray.com) [`r fontawesome::fa("pencil")`](https://www.rostrum-blog.com) [`r fontawesome::fa("github")`](https://github.com/matt-dray) [`r fontawesome::fa("mastodon")`](https://fosstodon.org/@mattdray)
 </center>
 
+::: {.notes}
+* So, at best: maybe you'll go back to your computer and consider whether base R might be useful for you in terms of its stability over time, or how in-built functionality might simplify your dependencies. Maybe you'll give the more modern functionality a go. Or maybe you were just unaware (confused?) that the base installation of R has the flexibility to do some unexpected, creative things.
+* You can find these slides at that address, embedded in that QR code, and then you can also see what I've been up to by clicking the links there.
+* At worst: I hope you learnt at least one new thing, however small.
+* At very, very best: I hope you agree with me that _base slaps_!
+:::
+
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -304,4 +349,4 @@ Credits
 
 * [Horseshoe crabs](https://commons.wikimedia.org/wiki/File:Limulus.jpg), Heinrich Harder (Public domain)
 * [Dependency](https://xkcd.com/2347/), xkcd ([CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/), altered)
-* [R logos](https://www.r-project.org/logo/), R Foundation ([CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), altered)
+* [R logos](https://www.r-project.org/logo/), R Foundation ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), altered)
