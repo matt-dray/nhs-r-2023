@@ -5,13 +5,13 @@ author: "[Matt Dray](https://www.matt-dray.com), October 2023"
 format:
   revealjs:
     theme: [default, nhs-r-2023.scss]
+    center: true
     hash-type: number
-    margin: 0.2
     menu: false
     highlight-style: a11y
     code-line-numbers: false
 title-slide-attributes:
-  data-background-image: images/00-rgui-menu-dark.png
+  data-background-image: images/rgui.png
   data-background-position: top
   data-background-size: 100%
   data-notes: |
@@ -22,7 +22,7 @@ title-slide-attributes:
     * Bonus points to folks who get the R reference in my slide theme.
 include-in-header:
   - text: |
-      <link rel = "shortcut icon" href = "images/09-quit.png" />
+      <link rel="shortcut icon" href="images/quit.png" />
 ---
 
 ```{r}
@@ -34,22 +34,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Polite notice {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {center='true' background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-* tl;dr: don't forget about base R!
-* Disclaimer: this is not a flamewar.
-
-:::: {.columns}
-
-::: {.column width='50%'}
-![](images/ross.jpg){fig-alt="Ross Ihaka wearing sweet New Balance trainers." width="75%" fig-align="center"}
-:::
-
-::: {.column width='50%'}
-![](images/robert.png){fig-alt="Robert Gentleman holds a power pose." width="75%" fig-align="center"}
-:::
-
-::::
+<center>
+Polite notice: this is not a flamewar 🔥
+</center>
 
 :::{.notes}
 * I have some polite notices and you have to respect them because they're polite.
@@ -58,11 +47,13 @@ knitr::opts_chunk$set(
 * Oh wait, I said no flamewars. Actually, the enemy is anyone who doesn't open their heart to base R. And you're here listening to me, so you're a winner.
 :::
 
-## Bas(e)ically {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-. . .
+<center>
+What is 'base R'? 🤔
+</center>
 
-Attached
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 ```{r}
 #| label: installed
@@ -71,21 +62,10 @@ Attached
 
 . . .
 
-Extent
-
 ```{r}
 #| label: extent
 extent <- installed.packages(priority = "base") |> row.names()
 extent[extent != attached]
-```
-
-. . . 
-
-Expanded universe 
-
-```{r}
-#| label: expanded
-installed.packages(priority = "recommended") |> row.names()
 ```
 
 ::: {.notes}
@@ -95,17 +75,47 @@ installed.packages(priority = "recommended") |> row.names()
 * Aside: note that you can assign and print all at once if you wrap the whole thing in brackets.
 * Some other packages are considered base, but not attached. These have priority 'base' when you look at the output of `installed.packages()`.
 * There are also some non-base packages that have a special status: 'recommended'.
-
 :::
 
-## Stability {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
+
+```{r}
+#| label: example-1
+x <- head(mtcars)
+(y <- x[x$wt > 3, c("hp", "cyl")])
+```
+
+. . .
+
+```{r}
+#| label: example-2
+(y$hp_per_cyl <- round(y$hp / y$cyl))
+```
+
+. . .
+
+```{r}
+#| label: example-3
+(z <- y[order(-y$hp_per_cyl), ])
+```
+
+. . .
+
+```{r}
+#| label: example-4
+sapply(z, mean)
+```
 
 
-::: {.incremental}
-1. The past
-2. The present
-2. The future
-:::
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
+
+1. Stability
+2. Dependency
+3. Modernity
+
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
+
+![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}
 
 ::: {.notes}
 * R originally appeared in 1993 and hit version 1.0 in 2000.
@@ -113,9 +123,9 @@ installed.packages(priority = "recommended") |> row.names()
 * Base code created 10 years ago has a pretty good chance of running today.
 :::
 
-## Dependency {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-![](images/xkcd.png){fig-alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'."}
+![](images/xkcd.png){fig-alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'." fig-align="center"}
 
 ::: {.notes}
 * Using packages in your work can help make your life a lot easier.
@@ -125,12 +135,15 @@ installed.packages(priority = "recommended") |> row.names()
 * There's less work for you to update your code or wrestle with additional tools.
 :::
 
-## Modern (!) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-* base pipe, `|>`
-* placeholder, `_`
-* lambda, `\()`
-* string literals, `r"{}"`
+![](images/logo.gif){fig-alt="The old R logo morphs into the new R logo. The old has bevels, highlights and shadows. The new one is simpler with peak 'flat' design." fig-align="center" width="60%"}
+
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
+
+<center>
+The _Modern Base Aesthetic_ 🧐
+</center>
 
 ::: {.notes}
 * Stable and dependable, yes, but that doesn't mean it never advances.
@@ -141,9 +154,7 @@ installed.packages(priority = "recommended") |> row.names()
 * I'll show you a single example that incorporates all these things.
 :::
 
-## The _Modern Base Aesthetic_ {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-
-. . .
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 String literals
 
@@ -171,6 +182,13 @@ r"(20\d{2})" |>
   sapply(\(yr) yr == "2023")
 ```
 
+```{r}
+#| label: cat-blank
+#| echo: false
+# Add blank 'placeholder' spot for output on next slide
+cat(" ")
+```
+
 ::: {.notes}
 * For dramatic effect, I'm using the phrase 'modern base aesthetic' to describe this 'new look' R.
 * Task: extract the year from each of these filepaths and return a logical if they match the current year. This is a contrived demo, yes, but I do stuff like this all the time.
@@ -183,7 +201,7 @@ r"(20\d{2})" |>
 * Pass it to the not-first 'm' argument of `regmatches()` using the underscore placeholder, then....
 :::
 
-## The _Modern Base Aesthetic_ {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 String literals
 
@@ -213,47 +231,19 @@ r"(20\d{2})" |>
 * You can see that the style of programming that tidyverse users are confident with has made its way into base R. No more endless nesting of functions or hundreds of intermediate objects cluttering the environment.
 :::
 
-## Pipe down {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-{magrittr}
+<center>
+Bonus: base did what? 🙃
+</center>
 
-```{r}
-#| label: magrittr
-library(magrittr)
-chickwts %>% nrow()
-```
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-```{r}
-#| label: magrittr-ast
-lobstr::ast(chickwts %>% nrow())
-```
+![](images/pixeltrix.png){fig-alt="Demo of the 'pixeltrix' package in RStudio. A function has been run and the plot window displays a grid of squares. They're coloured to look like Mario from Super Mario. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." width="100%" fig-align="center"}
 
-. . .
-
-```{r}
-#| label: magrittr-fn
-`%>%`(chickwts, nrow)
-```
-
-. . .
-
-Base
-
-```{r}
-#| label: bpipe
-chickwts |> nrow()
-```
-
-```{r}
-#| label: bpipe=ast
-lobstr::ast(chickwts |> nrow())
-```
-
-## {pixeltrix} [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/index.html#category=pixeltrix) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-
-`locator()`, `repeat`
-
-![](images/pixeltrix.png){fig-alt="Demo of the 'pixeltrix' package in RStudio. A function has been run and the plot window displays a grid of squares. They're coloured to look like Mario from Super Mario. The user hits the escape key and is returned a matrix representation of the character they made, including colour values as an attribute." width="100%" fig-align="left"}
+<center>
+pixeltrix [`r fontawesome::fa("github")`](https://github.com/matt-dray/pixeltrix) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/index.html#category=pixeltrix)
+</center>
 
 ::: {.notes}
 * I want to show you three packages I've written for fun that include interesting base R functions.
@@ -262,11 +252,13 @@ lobstr::ast(chickwts |> nrow())
 * {pixeltrix} contains a `repeat` loop, that asks the user to click on a plot with `locator()`; updates the plot given the click; and then re-asks the user to click until they break the `repeat` loop.
 :::
 
-## {r.oguelike} [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/index.html#category=r.oguelike) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-`readline()`, `matrix()`, `while`
+![](images/r.oguelike.gif){fig-alt="Gif demonstration of the 'r.oguelike' package in the RStudio console. The 'start_game' function is run. The console clears and a text-based tile-based dungeon map appeears. Below is an inventory that includes health, money and food counters. Below is a prompt asking the user to type the W, A, S or D key and hit enter to move. The user does this and their player character moves around the dungeon space, collects an apple, battles an enemy and then eats the apple to restore health." width="100%" fig-align="center"}
 
-![](images/r.oguelike-demo.gif){fig-alt="Gif demonstration of the 'r.oguelike' package in the RStudio console. The 'start_game' function is run. The console clears and a text-based tile-based dungeon map appeears. Below is an inventory that includes health, money and food counters. Below is a prompt asking the user to type the W, A, S or D key and hit enter to move. The user does this and their player character moves around the dungeon space, collects an apple, battles an enemy and then eats the apple to restore health." width="100%" fig-align="left"}
+<center>
+r.oguelike [`r fontawesome::fa("github")`](https://github.com/matt-dray/r.oguelike) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/index.html#category=r.oguelike)
+</center>
 
 ::: {.notes}
 * {r.oguelike} mimics an early text-based videogame. 
@@ -274,21 +266,13 @@ lobstr::ast(chickwts |> nrow())
 * The user can move their character (represented by the `@` symbol) by typing into the interactive prompt, which is provided by the base function `readline()`. The enemy tracks the player.
 :::
 
-## {tamRgo} [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/posts/2022-11-13-tamrgo/) {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-`R_user_dir()`
+![](images/tamRgo.png){fig-alt="Demo of the 'tamRgo' package in the RStudio console. On the left, the 'tamRgo' package is loaded, which tells the user that their pet, 'Kevin', is pleased to see them and also provides some prompts for interacting with the pet. The user uses the 'get_stats' function for a printout showing the pet's status, like its age and how hungry it is. On the right, the user uses the 'see_pet' function' and a blocky character is printed to the console, along with a blocky poop. The user runs the 'clean' function and reinspects the pet and a message says that 'dirty' status value is now set to zero." width="100%" fig-align="center"}
 
-:::: {.columns}
-
-::: {.column width='50%'}
-![](images/tamRgo-1.png){fig-alt="Demo of the 'tamRgo' package in the RStudio console. The 'tamRgo' package is loaded, which tells the user that their pet, 'Kevin', is pleased to see them and also provides some prompts for interacting with the pet. The user uses the 'get_stats' function for a printout showing the pet's status, like its age and how hungry it is." width="100%" fig-align="left"}
-:::
-
-::: {.column width='50%'}
-![](images/tamRgo-2.png){fig-alt="Demo of the 'tamRgo' package in the RStudio console. The user uses the 'see_pet' function' and a blocky character is printed to the console, along with a blocky poop. The user runs the 'clean' function and reinspects the pet and a message says that 'dirty' status value is now set to zero." width="100%" fig-align="left"}
-:::
-
-::::
+<center>
+tamRgo [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) [`r fontawesome::fa("readme")`](https://www.rostrum.blog/posts/2022-11-13-tamrgo/)
+</center>
 
 ::: {.notes}
 * {tamRgo} simulates a cyber pet that lives on your computer and 'exists' between R sessions.
@@ -296,24 +280,28 @@ lobstr::ast(chickwts |> nrow())
 * How can data about your pet exist between sessions? The package makes use of the base R function `R_user_dir()`, which builds a path to a standardised location on the user's computer where data or cached items can be stored. In {tamRgo}, a 'blueprint' text file stores the pet's status. The blueprint is read at the start of the next R session and values related to time, such as the pet's age and hunger level, are updated given the difference between the current date and date of last interaction.
 :::
 
-## Wrap-up {background-image="images/00-rgui-menu-dark.png" background-position="top" background-size="100%"}
-:::: {.columns}
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-::: {.column width='60%'}
-tl;dr: don't forget about base R!
+<center>
+<h1>Base slaps!</h1>
 
-* Stability
-* Dependency
-* Hidden gems
+Stability, Dependency, Modernity, Oddity!
+</center>
 
-* [matt-dray.github.io/nhs-r-2023](https://matt-dray.github.io/nhs-r-2023)
-* [matt-dray.com](https://www.matt-dray.com)
-:::
+![](images/qr.png){fig-alt="A QR code that links to where these slides exist on the web." width=50% fig-align="center"}
 
-::: {.column width='40%'}
-![](images/qr.png){fig-alt="A QR code that links to where these slides exist on the web."}
-:::
+<center>
+[matt-dray.github.io/nhs-r-2023](https://matt-dray.github.io/nhs-r-2023)
 
-::::
+Matt Dray [`r fontawesome::fa("globe")`](https://www.matt-dray.com) [`r fontawesome::fa("pencil")`](https://www.rostrum-blog.com) [`r fontawesome::fa("github")`](https://github.com/matt-dray) [`r fontawesome::fa("mastodon")`](https://fosstodon.org/@mattdray)
+</center>
 
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
+
+Credits
+
+* [Horseshoe crabs](https://commons.wikimedia.org/wiki/File:Limulus.jpg), Heinrich Harder (Public domain)
+* [Dependency](https://xkcd.com/2347/), xkcd ([CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/), altered)
+* [R logos](https://www.r-project.org/logo/), R Foundation ([CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), altered)
