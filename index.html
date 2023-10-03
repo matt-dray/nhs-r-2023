@@ -590,7 +590,8 @@ Valiant           105   6         18</code></pre>
 <section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
 <h2></h2>
 
-<img data-src="images/horseshoe-crab.jpg" style="width:100.0%" alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." class="r-stretch quarto-figure-center"><aside class="notes">
+<!--![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}-->
+<img data-src="images/nice-doggie.gif" style="width:100.0%" alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." class="r-stretch quarto-figure-center"><aside class="notes">
 <ul>
 <li>I want to talk a little about how base R is a great choice for work that needs to be stable and reproducible over time.</li>
 <li>The core language retains so much of what was in the original specifications in 1993 and in the version 1.0 release in 2000.</li>
@@ -598,6 +599,7 @@ Valiant           105   6         18</code></pre>
 <li>There’s no version-2-to-version-3 rift as in Python for example.</li>
 <li>If you want a trip down memory lane, I downloaded R version 1.0 and found in there a little file called ‘Y2K’ that explained that ‘we expect R to be Y2K compliant’, lol. There was a time where we couldn’t be sure if code would survive into the 21st Century; yet here were are nearly a quarter of a century later.</li>
 <li>You might be wondering why I’ve chosen this image. Here’s my terrible metaphor: base R is not a dinosaur. It’s more like a horseshoe crab. It’s not extinct. It’s survived all this time. It’s also pretty unassuming and kind of weird. You could introduce a horseshoe crab today to one from a million years ago and they’d be friends I reckon.</li>
+<li>Also, us R users are Milhouse, aren’t we?</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -772,6 +774,27 @@ Valiant           105   6         18</code></pre>
 </section>
 <section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
 <h2></h2>
+<p>String literals</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> paths <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\t</span><span class="st">rash 2021v1.txt}"</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\b</span><span class="st">ilge-2020-"</span>new<span class="st">".txt}"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   r<span class="st">"{C:</span><span class="sc">\n</span><span class="st">onsense</span><span class="sc">\r</span><span class="st">ubbish2023_final.txt}"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pipes and lambdas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="sc">&gt;</span> r<span class="st">"(20\d{2})"</span> <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="sc">+</span>   <span class="fu">gregexpr</span>(paths) <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="sc">+</span>   <span class="fu">regmatches</span>(paths, <span class="at">m =</span> _) <span class="sc">|&gt;</span> </span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="sc">+</span>   <span class="fu">sapply</span>(\(yr) yr <span class="sc">==</span> <span class="st">"2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
+<h2></h2>
 <center>
 Bonus: base did what? 🙃
 </center>
@@ -888,8 +911,8 @@ Matt Dray <a href="https://www.matt-dray.com"><svg aria-hidden="true" role="img"
 <h2></h2>
 <p>Credits</p>
 <ul>
-<li><a href="https://commons.wikimedia.org/wiki/File:Limulus.jpg">Horseshoe crabs</a>, Heinrich Harder (Public domain)</li>
-<li><a href="https://xkcd.com/2347/">Dependency</a>, xkcd (<a href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>, altered)</li>
+<li>‘Summer of 4 Ft. 2’, <em>The Simpsons</em>, created by Matt Groening (via <a href="https://frinkiac.com/">Frinkiac</a>)</li>
+<li><a href="https://xkcd.com/2347/">‘Dependency’</a>, <em>xkcd</em>, created by Randall Munroe (<a href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>, altered)</li>
 <li><a href="https://www.r-project.org/logo/">R logos</a>, R Foundation (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, altered)</li>
 </ul>
 <div class="footer footer-default">

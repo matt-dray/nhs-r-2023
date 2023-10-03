@@ -5,6 +5,7 @@ author: "[Matt Dray](https://www.matt-dray.com), October 2023"
 format:
   revealjs:
     theme: [default, nhs-r-2023.scss]
+    # embed-resources: true
     center: true
     hash-type: number
     menu: false
@@ -140,7 +141,9 @@ sapply(z, mean)
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}
+![](images/nice-doggie.gif){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}
+
+<!--![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}-->
 
 ::: {.notes}
 * I want to talk a little about how base R is a great choice for work that needs to be stable and reproducible over time. 
@@ -149,6 +152,7 @@ sapply(z, mean)
 * There's no version-2-to-version-3 rift as in Python for example.
 * If you want a trip down memory lane, I downloaded R version 1.0 and found in there a little file called 'Y2K' that explained that 'we expect R to be Y2K compliant', lol. There was a time where we couldn't be sure if code would survive into the 21st Century; yet here were are nearly a quarter of a century later.
 * You might be wondering why I've chosen this image. Here's my terrible metaphor: base R is not a dinosaur. It's more like a horseshoe crab. It's not extinct. It's survived all this time. It's also pretty unassuming and kind of weird. You could introduce a horseshoe crab today to one from a million years ago and they'd be friends I reckon.
+* Also, us R users are Milhouse, aren't we?
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -271,6 +275,30 @@ r"(20\d{2})" |>
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
+String literals
+
+```{r}
+#| label: modern-strings-3
+paths <- c(
+  r"{C:\nonsense\trash 2021v1.txt}",
+  r"{C:\nonsense\bilge-2020-"new".txt}",
+  r"{C:\nonsense\rubbish2023_final.txt}"
+)
+```
+
+Pipes and lambdas
+
+```{r}
+#| label: modern-pipe-lambda-3
+#| code-line-numbers: true
+r"(20\d{2})" |> 
+  gregexpr(paths) |> 
+  regmatches(paths, m = _) |> 
+  sapply(\(yr) yr == "2023")
+```
+
+## {background-image="images/rgui.png" background-position="top" background-size="100%"}
+
 <center>
 Bonus: base did what? 🙃
 </center>
@@ -347,6 +375,6 @@ Matt Dray [`r fontawesome::fa("globe")`](https://www.matt-dray.com) [`r fontawes
 
 Credits
 
-* [Horseshoe crabs](https://commons.wikimedia.org/wiki/File:Limulus.jpg), Heinrich Harder (Public domain)
-* [Dependency](https://xkcd.com/2347/), xkcd ([CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/), altered)
+* 'Summer of 4 Ft. 2', _The Simpsons_, created by Matt Groening (via [Frinkiac](https://frinkiac.com/))
+* ['Dependency'](https://xkcd.com/2347/), _xkcd_, created by Randall Munroe ([CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/), altered)
 * [R logos](https://www.r-project.org/logo/), R Foundation ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), altered)
