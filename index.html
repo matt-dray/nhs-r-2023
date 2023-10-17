@@ -442,7 +442,7 @@ What is ‘base R’? 🤔
 <li>It’s entirely possible that you already have no idea what I’m talking about.</li>
 <li>Actually, what do we mean by ‘base’ R?</li>
 <li>Well, it’s as it sounds: it’s the functionality that R is equipped with in the ‘base’ installation, when we first install it.</li>
-<li>It’s the functions that R has before we install any packages.</li>
+<li>It’s the functions that R has before we install and attach any packages.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -468,18 +468,17 @@ What is ‘base R’? 🤔
 <div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> extent <span class="ot">&lt;-</span> <span class="fu">installed.packages</span>(<span class="at">priority =</span> <span class="st">"base"</span>) <span class="sc">|&gt;</span> <span class="fu">row.names</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> extent[extent <span class="sc">!=</span> attached]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setdiff</span>(extent, attached)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "compiler"  "datasets"  "graphics"  "grDevices" "grid"      "methods"  
- [7] "parallel"  "splines"   "stats"     "stats4"    "tcltk"     "tools"    </code></pre>
+<pre><code>[1] "compiler" "grid"     "parallel" "splines"  "stats4"   "tcltk"    "tools"   </code></pre>
 </div>
 </div>
 <aside class="notes">
 <ul>
 <li>Buuuut it’s marginally more complicated than that.</li>
-<li>Surprise, it’s actually <em>several</em> packages that are automatically installed with R , including one called ‘base’, confusingly.</li>
+<li>Surprise, it’s actually <em>several</em> packages that are automatically installed with R, including one called ‘base’, confusingly.</li>
 <li>Some are automatically attached when you start R. You can see this if you look at <code>sessionInfo()</code>.</li>
-<li>You can also use the function ‘search()’ to confirm that these packages are already attached when you start a new R session.</li>
+<li>You can also use the function <code>search()</code> to confirm that these packages are already attached when you start a new R session.</li>
 <li>Aside: note that you can assign and print all at once if you wrap the whole thing in brackets.</li>
 <li>Some other packages are considered base, but not attached. These have priority ‘base’ when you look at the output of <code>installed.packages()</code>.</li>
 </ul>
@@ -545,7 +544,7 @@ Valiant           105   6         18</code></pre>
 <li>For a new column, we can assign the <code>round()</code>ed value of horsepower over (<code>/</code>) cylinder count to a freshly <code>hp_per_cyl</code> column, declared on the left of the assignment arrow.</li>
 <li>We can <code>order()</code> the data.frame by values of <code>hp_per_cyl</code>, which will be descending due to the minus (<code>-</code>) symbol, and call this object <code>z</code>.</li>
 <li>Finally, some functional programming: to each column of the data.frame <code>z</code>, let’s apply the function <code>mean</code> with <code>sapply()</code>, which simplifies to a vector of results in this case.</li>
-<li>You’ll likely have recognised certain functions in there at very least.</li>
+<li>You’ll likely have recognised certain functions in there at very least. Maybe you learnt something new just from this little bit of code.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -569,10 +568,10 @@ Valiant           105   6         18</code></pre>
 </ol>
 <aside class="notes">
 <ul>
-<li>Regardless of what you think of that style of coding, I want to make three points (and maybe a bonus one) to just remind you why base R is useful and may have changed since you last used it in anger.</li>
-<li>First, its stability over time and into the future.</li>
-<li>Second, that a lot of functionality exists in base R that could help to limit package dependencies.</li>
-<li>Third, that ‘stability’ does not mean ‘unchanging’ and ‘unresponsive’ to the needs and wants of the R community.</li>
+<li>Regardless of what you think of that style of coding, I want to make three points (and maybe a bonus one) to just remind you why base R is useful and how it may have changed since you last engaged with it.</li>
+<li>First, its incredible stability over time.</li>
+<li>Second, that it can help limit your time spent in ‘dependnecy’ hell.</li>
+<li>Third, that ‘stability’ does not mean ‘unresponsive to the evolving needs of the R community’.</li>
 <li>My conceit here is that R is great, even when unadorned by packages. This is a message for new users, people who are more used to coding with interfaces afforded by packages, and even folks who aren’t actually R users (yet).</li>
 </ul>
 <style type="text/css">
@@ -590,9 +589,9 @@ Valiant           105   6         18</code></pre>
 <section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
 <h2></h2>
 
-<!--![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}-->
 <img data-src="images/nice-doggie.gif" style="width:100.0%" alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." class="r-stretch quarto-figure-center"><aside class="notes">
 <ul>
+<li>So, first point: stability.</li>
 <li>I want to talk a little about how base R is a great choice for work that needs to be stable and reproducible over time.</li>
 <li>The core language retains so much of what was in the original specifications in 1993 and in the version 1.0 release in 2000.</li>
 <li>Boradly, base code created 10 years ago has a pretty good chance of running today and 10 years from now.</li>
@@ -618,6 +617,7 @@ Valiant           105   6         18</code></pre>
 
 <img data-src="images/xkcd.png" alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'." class="r-stretch quarto-figure-center"><aside class="notes">
 <ul>
+<li>Okay, next point: dependencies.</li>
 <li>One of R’s greatest strengths is its extensibility. The CRAN repository has about 20,000 packages at the time of speaking. A lot of smart people have written a lot of excellent code so that you don’t have to.</li>
 <li>Whether or not you take on a dependency is up to you and the type of project you’re working on and it.</li>
 <li>But, of course, you should always be aware that packages come and go, functions deprecate, thermodynamics laws apply.</li>
@@ -641,11 +641,12 @@ Valiant           105   6         18</code></pre>
 
 <img data-src="images/logo.gif" style="width:60.0%" alt="The old R logo morphs into the new R logo. The old has bevels, highlights and shadows. The new one is simpler with peak 'flat' design." class="r-stretch quarto-figure-center"><aside class="notes">
 <ul>
+<li>Third point: modernity.</li>
 <li>I don’t think that a lack of change is stubbornness or sticking one’s head in the sand. I would call it measured and considerate.</li>
 <li>I want to talk about how, despite the stability, the language continues to adapt sensibly, listen to its users and embrace modern ways of using R.</li>
 <li>And actually base R has changed in a number of ways, including the use of a base pipe, simplified anonymous function structure and string literals. These are all things that the community of R users has asked for.</li>
-<li>And perhaps more famously, the conversion of the default <code>stringsAsFactors = TRUE</code> to <code>FALSE</code>, perhaps reflecting a change in R from a lanaguage of statistics (where character values as factors makes a lot of sense) to a more general-purpose language.</li>
-<li>Of course, there are still opportunities to improve base R. Lots of stuff can come out of the woodwork after 30 years, or as tastes change. Henrik Bengtsson has a GitHub repo to which people can add issues. Each one lists a specific gripe that someone has had with the functioning of the language. For example, out very own Tim Taylor at UKHSA posted about the behaviour of indexing a dataframe to return a single column. By default, a single column is returned as a vector; the user needs to add the argument <code>drop = FALSE</code> to retain the coulmnar structure. Perhaps that behaviour will updated in the future?</li>
+<li>And perhaps more famously, the conversion of the default <code>stringsAsFactors = TRUE</code> to <code>FALSE</code>, perhaps reflecting a change in R from a language of statistics (where character values as factors makes a lot of sense) to a more general-purpose language.</li>
+<li>Of course, there are still opportunities to improve base R. Lots of stuff can come out of the woodwork after 30 years, or as tastes change. Henrik Bengtsson has a GitHub repo to which people can add issues. Each one lists a specific gripe that someone has had with the functioning of the language. For example, out very own Tim Taylor at UKHSA posted about the behaviour of indexing a dataframe to return a single column. By default, a single column is returned as a vector; the user needs to add the argument <code>drop = FALSE</code> to retain the columnar structure. Perhaps that behaviour will updated in the future?</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -714,7 +715,7 @@ Valiant           105   6         18</code></pre>
 <ul>
 <li>Task: extract the year from each of these filepaths and return a logical if they match the current year. This is a contrived demo, yes, but I do stuff like this all the time.</li>
 <li>Windows uses a backslash in filepaths. This is bad.</li>
-<li>R reads ‘’ as new line and can’t handle double-quotes in double-quotes, for example, so normally we’d have to escape them with another backslash.</li>
+<li>R reads ‘’ as new line and can’t handle double-quotes in double-quotes, for example, so normally we’d have to escape them with another backslash. (You can see the syntax highlighting on this page is getting confused and is recolouring ‘’, for example!)</li>
 <li>String literals read the literal string. You do it by putting an ‘r’ before the string and then wrap the string inside the quote marks in curly braces, or parentheses.</li>
 <li>Voila, no need to manually go through the whole string to add extra backslashes.</li>
 <li>Take the regular expression for two zero followed by two digits, i.e.&nbsp;a year, then…</li>
@@ -750,8 +751,10 @@ Valiant           105   6         18</code></pre>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="sc">+</span>   <span class="fu">gregexpr</span>(paths) <span class="sc">|&gt;</span> </span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="sc">+</span>   <span class="fu">regmatches</span>(paths, <span class="at">m =</span> _) <span class="sc">|&gt;</span> </span>
 <span id="cb17-4"><a href="#cb17-4"></a><span class="sc">+</span>   <span class="fu">sapply</span>(\(yr) yr <span class="sc">==</span> <span class="st">"2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE FALSE  TRUE</code></pre>
+<pre><code>&nbsp;</code></pre>
 </div>
 </div>
 <aside class="notes">
@@ -875,9 +878,9 @@ tamRgo <a href="https://github.com/matt-dray/tamRgo"><svg aria-hidden="true" rol
 <section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
 <h2></h2>
 <center>
-<h1>
+<h2>
 Base slaps!
-</h1>
+</h2>
 Stability, Dependency, Modernity, Oddity!
 </center>
 
@@ -906,10 +909,16 @@ Matt Dray <a href="https://www.matt-dray.com"><svg aria-hidden="true" role="img"
 </section>
 <section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
 <h2></h2>
+<p>Links 🔗</p>
+<ul>
+<li><a href="https://matt-dray.github.io/nhs-r-2023">Slides</a> on the web</li>
+<li><a href="https://github.com/matt-dray/nhs-r-2023">Source code</a> for this talk</li>
+<li><a href="https://www.rostrum.blog/posts/2023-10-17-nhs-r-2023/">Blogpost</a> about this talk</li>
+</ul>
 </section>
 <section class="slide level2 center" data-background-image="images/rgui.png" data-background-position="top" data-background-size="100%">
 <h2></h2>
-<p>Credits</p>
+<p>Credits 👏</p>
 <ul>
 <li>‘Summer of 4 Ft. 2’, <em>The Simpsons</em>, created by Matt Groening (via <a href="https://frinkiac.com/">Frinkiac</a>)</li>
 <li><a href="https://xkcd.com/2347/">‘Dependency’</a>, <em>xkcd</em>, created by Randall Munroe (<a href="https://creativecommons.org/licenses/by-nc/2.5/">CC BY-NC 2.5</a>, altered)</li>

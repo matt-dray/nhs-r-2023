@@ -57,7 +57,7 @@ What is 'base R'? 🤔
 * It's entirely possible that you already have no idea what I'm talking about.
 * Actually, what do we mean by 'base' R?
 * Well, it's as it sounds: it's the functionality that R is equipped with in the 'base' installation, when we first install it.
-* It's the functions that R has before we install any packages.
+* It's the functions that R has before we install and attach any packages.
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -72,14 +72,14 @@ What is 'base R'? 🤔
 ```{r}
 #| label: extent
 extent <- installed.packages(priority = "base") |> row.names()
-extent[extent != attached]
+setdiff(extent, attached)
 ```
 
 ::: {.notes}
 * Buuuut it's marginally more complicated than that.
-* Surprise, it's actually _several_ packages that are automatically installed with R , including one called 'base', confusingly.
+* Surprise, it's actually _several_ packages that are automatically installed with R, including one called 'base', confusingly.
 * Some are automatically attached when you start R. You can see this if you look at `sessionInfo()`.
-* You can also use the function 'search()' to confirm that these packages are already attached when you start a new R session.
+* You can also use the function `search()` to confirm that these packages are already attached when you start a new R session.
 * Aside: note that you can assign and print all at once if you wrap the whole thing in brackets.
 * Some other packages are considered base, but not attached. These have priority 'base' when you look at the output of `installed.packages()`.
 :::
@@ -122,7 +122,7 @@ sapply(z, mean)
 * For a new column, we can assign the `round()`ed value of horsepower over (`/`) cylinder count to a freshly `hp_per_cyl` column, declared on the left of the assignment arrow.
 * We can `order()` the data.frame by values of `hp_per_cyl`, which will be descending due to the minus (`-`) symbol, and call this object `z`.
 * Finally, some functional programming: to each column of the data.frame `z`, let's apply the  function `mean` with `sapply()`, which simplifies to a vector of results in this case.
-* You'll likely have recognised certain functions in there at very least.
+* You'll likely have recognised certain functions in there at very least. Maybe you learnt something new just from this little bit of code.
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -132,10 +132,10 @@ sapply(z, mean)
 3. Modernity
 
 ::: {.notes}
-* Regardless of what you think of that style of coding, I want to make three points (and maybe a bonus one) to just remind you why base R is useful and may have changed since you last used it in anger.
-* First, its stability over time and into the future.
-* Second, that a lot of functionality exists in base R that could help to limit package dependencies.
-* Third, that 'stability' does not mean 'unchanging' and 'unresponsive' to the needs and wants of the R community.
+* Regardless of what you think of that style of coding, I want to make three points (and maybe a bonus one) to just remind you why base R is useful and how it may have changed since you last engaged with it.
+* First, its incredible stability over time.
+* Second, that it can help limit your time spent in 'dependnecy' hell.
+* Third, that 'stability' does not mean 'unresponsive to the evolving needs of the R community'.
 * My conceit here is that R is great, even when unadorned by packages. This is a message for new users, people who are more used to coding with interfaces afforded by packages, and even folks who aren't actually R users (yet).
 :::
 
@@ -143,9 +143,8 @@ sapply(z, mean)
 
 ![](images/nice-doggie.gif){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}
 
-<!--![](images/horseshoe-crab.jpg){fig-alt="A painting of two horseshoe crabs just kicking back underwater. The artist, Heinrich Harder, has signed the piece." fig-align="center" width=100%}-->
-
 ::: {.notes}
+* So, first point: stability.
 * I want to talk a little about how base R is a great choice for work that needs to be stable and reproducible over time. 
 * The core language retains so much of what was in the original specifications in 1993 and in the version 1.0 release in 2000. 
 * Boradly, base code created 10 years ago has a pretty good chance of running today and 10 years from now.
@@ -160,6 +159,7 @@ sapply(z, mean)
 ![](images/xkcd.png){fig-alt="Comic from xkcd. Lots of blocks are stacked on top of each other. One small block near the bottom is indicated. Th eimplicatinois that removing the one small block will bring the whole thing down. THe stack is labelled 'your dependencies', the small block is labelled 'some package' and the big stable blocks underneath it are labelled 'base'." fig-align="center"}
 
 ::: {.notes}
+* Okay, next point: dependencies.
 * One of R's greatest strengths is its extensibility. The CRAN repository has about 20,000 packages at the time of speaking. A lot of smart people have written a lot of excellent code so that you don't have to. 
 * Whether or not you take on a dependency is up to you and the type of project you're working on and it.
 * But, of course, you should always be aware that packages come and go, functions deprecate, thermodynamics laws apply.
@@ -172,11 +172,12 @@ sapply(z, mean)
 ![](images/logo.gif){fig-alt="The old R logo morphs into the new R logo. The old has bevels, highlights and shadows. The new one is simpler with peak 'flat' design." fig-align="center" width="60%"}
 
 ::: {.notes}
+* Third point: modernity.
 * I don't think that a lack of change is stubbornness or sticking one's head in the sand. I would call it measured and considerate. 
 * I want to talk about how, despite the stability, the language continues to adapt sensibly, listen to its users and embrace modern ways of using R. 
 * And actually base R has changed in a number of ways, including the use of a base pipe, simplified anonymous function structure and string literals. These are all things that the community of R users has asked for.
-* And perhaps more famously, the conversion of the default `stringsAsFactors = TRUE` to `FALSE`, perhaps reflecting a change in R from a lanaguage of statistics (where character values as factors makes a lot of sense) to a more general-purpose language.
-* Of course, there are still opportunities to improve base R. Lots of stuff can come out of the woodwork after 30 years, or as tastes change. Henrik Bengtsson has a GitHub repo to which people can add issues. Each one lists a specific gripe that someone has had with the functioning of the language. For example, out very own Tim Taylor at UKHSA posted about the behaviour of indexing a dataframe to return a single column. By default, a single column is returned as a vector; the user needs to add the argument `drop = FALSE` to retain the coulmnar structure. Perhaps that behaviour will updated in the future?
+* And perhaps more famously, the conversion of the default `stringsAsFactors = TRUE` to `FALSE`, perhaps reflecting a change in R from a language of statistics (where character values as factors makes a lot of sense) to a more general-purpose language.
+* Of course, there are still opportunities to improve base R. Lots of stuff can come out of the woodwork after 30 years, or as tastes change. Henrik Bengtsson has a GitHub repo to which people can add issues. Each one lists a specific gripe that someone has had with the functioning of the language. For example, out very own Tim Taylor at UKHSA posted about the behaviour of indexing a dataframe to return a single column. By default, a single column is returned as a vector; the user needs to add the argument `drop = FALSE` to retain the columnar structure. Perhaps that behaviour will updated in the future?
 :::
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
@@ -235,7 +236,7 @@ cat(" ")
 ::: {.notes}
 * Task: extract the year from each of these filepaths and return a logical if they match the current year. This is a contrived demo, yes, but I do stuff like this all the time.
 * Windows uses a backslash in filepaths. This is bad. 
-* R reads '\n' as new line and can't handle double-quotes in double-quotes, for example, so normally we'd have to escape them with another backslash.
+* R reads '\n' as new line and can't handle double-quotes in double-quotes, for example, so normally we'd have to escape them with another backslash. (You can see the syntax highlighting on this page is getting confused and is recolouring '\n', for example!)
 * String literals read the literal string. You do it by putting an 'r' before the string and then wrap the string inside the quote marks in curly braces, or parentheses.
 * Voila, no need to manually go through the whole string to add extra backslashes.
 * Take the regular expression for two zero followed by two digits, i.e. a year, then...
@@ -261,10 +262,18 @@ Pipes and lambdas
 ```{r}
 #| label: modern-pipe-lambda-2
 #| code-line-numbers: "4"
+#| eval: false
 r"(20\d{2})" |> 
   gregexpr(paths) |> 
   regmatches(paths, m = _) |> 
   sapply(\(yr) yr == "2023")
+```
+
+```{r}
+#| label: cat-blank-2
+#| echo: false
+# Add blank 'placeholder' spot for output on next slide
+cat(" ")
 ```
 
 ::: {.notes}
@@ -349,7 +358,7 @@ tamRgo [`r fontawesome::fa("github")`](https://github.com/matt-dray/tamRgo) [`r 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
 <center>
-<h1>Base slaps!</h1>
+<h2>Base slaps!</h2>
 
 Stability, Dependency, Modernity, Oddity!
 </center>
@@ -371,9 +380,15 @@ Matt Dray [`r fontawesome::fa("globe")`](https://www.matt-dray.com) [`r fontawes
 
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
+Links 🔗
+
+* [Slides](https://matt-dray.github.io/nhs-r-2023) on the web
+* [Source code](https://github.com/matt-dray/nhs-r-2023) for this talk
+* [Blogpost](https://www.rostrum.blog/posts/2023-10-17-nhs-r-2023/) about this talk
+
 ## {background-image="images/rgui.png" background-position="top" background-size="100%"}
 
-Credits
+Credits 👏
 
 * 'Summer of 4 Ft. 2', _The Simpsons_, created by Matt Groening (via [Frinkiac](https://frinkiac.com/))
 * ['Dependency'](https://xkcd.com/2347/), _xkcd_, created by Randall Munroe ([CC BY-NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/), altered)
